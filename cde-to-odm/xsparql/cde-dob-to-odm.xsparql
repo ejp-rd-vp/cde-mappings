@@ -1,0 +1,33 @@
+prefix obo: <http://purl.obolibrary.org/obo/>
+prefix sio: <http://semanticscience.org/resource/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix snomedct: <http://purl.bioontology.org/ontology/SNOMEDCT/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+
+<ClinicalData StudyOID="?" MetadataVersionOID="?">
+    <SubjectData SubjectKey="?" TransactionType="Insert">
+        <StudyEventData StudyEventOID="Screen">       
+            <FormData FormOID="DEMOG">    
+		<ItemGroupData>  
+{ 
+  for $dob from <examples/cde-rdf/cde-dob-sex.ttl>
+  where {
+         $output rdf:type sio:SIO_000340.
+         $output sio:SIO_000300 $dob.
+         
+         $quality rdf:type obo:NCIT_C68615 .
+         $quality sio:SIO_000642  $output.
+  
+         $person rdf:type sio:SIO_000498. 
+         $person sio:SIO_000217 $quality .
+       }
+       
+       return <ItemDataDateTime ItemOID="BRTHDTC">{$dob}</ItemDataDateTime>  
+
+}
+</ItemGroupData>
+</FormData>    
+        </StudyEventData>  
+    </SubjectData>
+</ClinicalData>    
