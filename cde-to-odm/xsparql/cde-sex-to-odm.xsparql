@@ -5,7 +5,7 @@ prefix snomedct: <http://purl.bioontology.org/ontology/SNOMEDCT/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 
-<ClinicalData StudyOID="?" MetadataVersionOID="?">
+<ClinicalData StudyOID="?" MetaDataVersionOID="?">
     <SubjectData SubjectKey="?" TransactionType="Insert">
         <StudyEventData StudyEventOID="Screen">
             <FormData FormOID="DEMOG">
