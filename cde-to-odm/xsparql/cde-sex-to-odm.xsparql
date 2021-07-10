@@ -4,6 +4,7 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 prefix snomedct: <http://purl.bioontology.org/ontology/SNOMEDCT/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
+
 <ClinicalData StudyOID="?" MetadataVersionOID="?">
     <SubjectData SubjectKey="?" TransactionType="Insert">
         <StudyEventData StudyEventOID="Screen">
@@ -12,7 +13,6 @@ prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
                     {
                       for distinct $sex from <examples/cde-rdf/cde-dob-sex.ttl>
                       where {
-                             {
                                $person rdf:type sio:SIO_000498.
                                $person sio:SIO_000217 $quality .
 
@@ -21,25 +21,17 @@ prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
                                $output rdf:type sio:SIO_000340.
                                $output rdf:type $sex.
-                             }
-                             union
-                             {
-                               $person rdf:type sio:SIO_000498.
-                               $person sio:SIO_000228 $role.
 
-                               $role rdf:type obo:OBI_0000093.
-                               $role sio:SIO_000356 $process.
-
-                               $process rdf:type sio:SIO_000006.
-                               $process sio:SIO_000229 $output.
-
-                               $output rdf:type sio:SIO_000340.
-                               $output rdf:type $sex.
-                             }
-
-                            filter(strstarts(str($sex), "http://purl.bioontology.org/ontology/SNOMEDCT/"))
-                           }
-                       return <ItemDataURI ItemOID="SEX">{$sex}</ItemDataURI>
+                             filter(strstarts(str($sex), "http://purl.bioontology.org/ontology/SNOMEDCT/"))
+                          }
+                      let $sex_label :=
+                        if ($sex = "http://purl.bioontology.org/ontology/SNOMEDCT/703118005") then
+                          "F"
+                        else
+                          if ($sex = "http://purl.bioontology.org/ontology/SNOMEDCT/703117000") then
+                            "M"
+                           else ()
+                      return  <ItemDataString ItemOID="SEX">{$sex_label}</ItemDataString>
                     }
                 </ItemGroupData>
             </FormData>

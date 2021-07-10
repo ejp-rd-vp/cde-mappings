@@ -4,30 +4,35 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 prefix snomedct: <http://purl.bioontology.org/ontology/SNOMEDCT/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
+<ODM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns="http://www.cdisc.org/ns/odm/v1.3"
+     xsi:schemaLocation="" Description="File used for debugging"
+     FileType="Snapshot" FileOID="Test ODM File" CreationDateTime="2017-03-15T00:00:00"
+     ODMVersion="1.3.0" Originator="" SourceSystem="" SourceSystemVersion="">
+  <ClinicalData StudyOID="?" MetaDataVersionOID="?">
+      <SubjectData SubjectKey="?" TransactionType="Insert">
+          <StudyEventData StudyEventOID="Screen">
+              <FormData FormOID="DEMOG">
+                  <ItemGroupData ItemGroupOID="?">
+                      {
+                        for $dob from <examples/cde-rdf/cde-dob-sex.ttl>
+                        where {
+                               $person rdf:type sio:SIO_000498.
+                               $person sio:SIO_000217 $quality .
 
-<ClinicalData StudyOID="?" MetadataVersionOID="?">
-    <SubjectData SubjectKey="?" TransactionType="Insert">
-        <StudyEventData StudyEventOID="Screen">       
-            <FormData FormOID="DEMOG">    
-		<ItemGroupData>  
-{ 
-  for $dob from <examples/cde-rdf/cde-dob-sex.ttl>
-  where {
-         $output rdf:type sio:SIO_000340.
-         $output sio:SIO_000300 $dob.
-         
-         $quality rdf:type obo:NCIT_C68615 .
-         $quality sio:SIO_000642  $output.
-  
-         $person rdf:type sio:SIO_000498. 
-         $person sio:SIO_000217 $quality .
-       }
-       
-       return <ItemDataDateTime ItemOID="BRTHDTC">{$dob}</ItemDataDateTime>  
+                               $quality rdf:type obo:NCIT_C68615 .
+                               $quality sio:SIO_000642  $output.
 
-}
-</ItemGroupData>
-</FormData>    
-        </StudyEventData>  
-    </SubjectData>
-</ClinicalData>    
+                               $output rdf:type sio:SIO_000340.
+                               $output sio:SIO_000300 $dob.
+                             }
+                             return <ItemData ItemOID="BRTHDTC" Value="{$dob}" />
+                      }
+                  </ItemGroupData>
+              </FormData>
+          </StudyEventData>
+      </SubjectData>
+  </ClinicalData>
+</ODM>
+
+
