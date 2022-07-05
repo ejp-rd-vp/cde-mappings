@@ -1,0 +1,40 @@
+prefix obo: <http://purl.obolibrary.org/obo/>
+prefix sio: <http://semanticscience.org/resource/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix snomedct: <http://purl.bioontology.org/ontology/SNOMEDCT/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+
+<ClinicalData StudyOID="?" MetaDataVersionOID="?">
+    <SubjectData SubjectKey="?" TransactionType="Insert">
+        <StudyEventData StudyEventOID="Screen">
+            <FormData FormOID="DEMOG">
+                <ItemGroupData>
+                    {
+                      for distinct $sex from <examples/cde-rdf/cde-dob-sex.ttl>
+                      where {
+                               $person rdf:type sio:SIO_000498.
+                               $person sio:SIO_000217 $quality .
+
+                               $quality rdf:type obo:NCIT_C17357 .
+                               $quality sio:SIO_000642  $output.
+
+                               $output rdf:type sio:SIO_000340.
+                               $output rdf:type $sex.
+
+                             filter(strstarts(str($sex), "http://purl.bioontology.org/ontology/SNOMEDCT/"))
+                          }
+                      let $sex_label :=
+                        if ($sex = "http://purl.bioontology.org/ontology/SNOMEDCT/703118005") then
+                          "F"
+                        else
+                          if ($sex = "http://purl.bioontology.org/ontology/SNOMEDCT/703117000") then
+                            "M"
+                           else ()
+                      return  <ItemDataString ItemOID="SEX">{$sex_label}</ItemDataString>
+                    }
+                </ItemGroupData>
+            </FormData>
+        </StudyEventData>
+    </SubjectData>
+</ClinicalData>
