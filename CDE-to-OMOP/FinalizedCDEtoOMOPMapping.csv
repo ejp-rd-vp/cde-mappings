@@ -1,0 +1,53 @@
+subject_id,predicate_id,object_id,mapping_justification,subject_label,object_label,mapping members,comments
+sio:identifier ,skos:exactMatch,person_id,Tables,,,,Columns
+NCIT:birth date ,skos:exactMatch,"year_of_birth, month_of_birth, day_day_of_birth",Tables,,,,Columns
+NCIT:sex  ,skos:exactMatch,"gender_concept_id, (gender_source_concept_id), (gender_source_value)",Tables,,,,Columns
+NCIT:female,skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/8532,ManualMappingCuration,Female,F,"RK, NB, CC, MW, AC, CB, MR",
+NCIT:male,skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/8507,ManualMappingCuration,Male,M,"RK, NB, CC, MW, AC, CB, MR",
+NCIT:Undetermined,skos:relatedMatch,0 (4086451),ManualMappingCuration,Undetermined,Patient Sex Unknown,"RK, NB, CC, MW, AC, CB, MR",Ask Esther for clarification
+NCIT:unknown,skos:narrowMatch,0 (4086451),ManualMappingCuration,Unknown,Patient Sex Unknown,"RK, NB, CC, MW, AC, CB, MR",
+sio:dead,skos:exactMatch,This person_id will be registered in the DEATH table including date etc.,Tables,,,,
+sio:alive,skos:exactMatch,This person_id will be absent in the DEATH table.,Tables,,,,
+NCIT:Subject lost to follow up,skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/4163894,ManualMappingCuration,Subject lost to follow up,Lost to follow up,"RK, NB, CC, MW, AC, CB, MR",
+NCIT:Refusal to participate,skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/1314399,ManualMappingCuration,Refusal to participate,Patient refused to participate,"RK, NB, CC, MW, AC, CB, MR",
+Patient Status,Data item,NCIT:date of death,Tables,,,,"death_date, (death_datetime)"
+Care pathway,Data item,NCIT:First confirmed visit,Tables,,,,observation_period_start_date OR earliest visit_start_date
+NCIT:onset,skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/40767921,ManualMappingCuration,Onset,Age of onset of symptoms,"RK, NB, CC, MW, AC, CB, MR","one is a qualifier and the other is an observation, possible concept https://athena.ohdsi.org/search-terms/terms/36662105"
+HP:antenatal onset,skos:broadMatch,https://athena.ohdsi.org/search-terms/terms/4137020; https://athena.ohdsi.org/search-terms/terms/4150733,ManualMappingCuration,Antenatal onset,"Antenatal, Period of onset","RK, NB, CC, MW, AC, CB, MR","HPO term combines the onset and the time period, athena only time period, needs to be expanded to include onset too"
+HP:congenital onset,skos:broadMatch,https://athena.ohdsi.org/search-terms/terms/4116830; https://athena.ohdsi.org/search-terms/terms/4150733,ManualMappingCuration,Congenital onset,"Congenital, Period of onset","RK, NB, AC, CB","HPO term combines the onset and the time period, athena only time period, needs to be expanded to include onset too"
+NCIT:date,skos:narrowMatch,https://athena.ohdsi.org/search-terms/terms/4181873,ManualMappingCuration,Date,Date of onset,"RK, NB, AC, CB",
+NCIT:undetermined,skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/4160775,ManualMappingCuration,Undetermined,Undetermined,"RK, NB, AC, CB",
+HP:neonatal onset,skos:broadMatch,https://athena.ohdsi.org/search-terms/terms/4114528; https://athena.ohdsi.org/search-terms/terms/4150733,ManualMappingCuration,Neonatal onset,"Neonatal, Period of onset","RK, NB, PA, NQR, RG",
+HP:pediatric onset,,,,,,,Can't find the exact term 'pediatric' in Athena
+HP:adult onset,skos:broadMatch,https://athena.ohdsi.org/search-terms/terms/4222567; https://athena.ohdsi.org/search-terms/terms/4150733,ManualMappingCuration,Adult onset,"Adulthood, Period of onset",,
+NCIT:age at diagnosis,skos:closeMatch,https://athena.ohdsi.org/search-terms/terms/4307859,ManualMappingCuration,Age at diagnosis,Age at diagnosis,"RK, NB, AC, CB",
+NCIT:postnatal,skos:closeMatch,https://athena.ohdsi.org/search-terms/terms/4137169/,ManualMappingCuration,Postnatal,Postnatal,"RK, NB, AC, CB",
+NCIT:prenatal,skos:narrowMatch,https://athena.ohdsi.org/search-terms/terms/36304304,ManualMappingCuration,Prenatal,Prenatal diagnosis,"RK, NB, AC, CB",
+NCIT:date,skos:narrowMatch,https://athena.ohdsi.org/search-terms/terms/4160852,ManualMappingCuration,Date,Date of diagnosis,"RK, NB, AC, CB",
+sio:medical diagnosis,skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/4234469,ManualMappingCuration,Medical diagnosis,Diagnosis,"PA, SZ, RC, NQR",The sio one is a process while the omop one is an observation
+sio:genomic sequence variant,skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/36308914,ManualMappingCuration,Genomic sequence variant,DNA sequence variant,"PA, SZ, RC, NQR",
+sio:sequence variation notation,skos:broadMatch,https://athena.ohdsi.org/search-terms/terms/40639397,ManualMappingCuration,Sequence variation notation,Annotation,"PA, SZ, NQR","G2 is proposing an OMOP mapping concept; snomed:900000000000519001 
+Domain: metadata; 
+"
+NCIT:sequence variant report,skos:broadMatch,https://athena.ohdsi.org/search-terms/terms/21493261,ManualMappingCuration,Sequence variant report,Report,,
+edam:gene id (HGNC),skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/3052700,ManualMappingCuration,Gene ID (HGNC),Gene studied ID,"PA, SZ, NQR",G2 is proposing an OMOP mapping concept; loinc:48018-6; Domain: Measurement
+edam:omim id,,,,,,,UROBORUS SITUATION
+NCIT:undiagnosed,skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/443949,ManualMappingCuration,Undiagnosed,Disease type AND/OR category unknown,"PA, SZ, RC, NQR",
+obi:comparative phenotypic assessment,skos:broadMatch,https://athena.ohdsi.org/search-terms/terms/4181659,ManualMappingCuration,Comparative phenotypic assessment,Phenotype determination,"PA, SZ, RC, NQR",
+sio:phenotype,skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/4215157,ManualMappingCuration,Phenotype,Phenotype,"PA, SZ, NQR",
+OBI:informed consent process,skos:exactMatch,https://athena.ohdsi.org/search-terms/terms/4186543,ManualMappingCuration,informed consent process,Obtaining consent,"PA, SZ, NQR",
+ICO:informed consent form,,,,,,,
+DUO:data use permission,,,,,,,
+DUO:general research use,skos:closeMatch,https://athena.ohdsi.org/search-terms/terms/46236323,ManualMappingCuration,General research use,Research study consent,"PA, SZ, NQR",
+DUO:health or medical or biomedical research,,,,,,,
+DUO:disease specific research,,,,,,,
+DUO:no restriction,,,,,,,
+DUO:population origins or ancestry research only,,,,,,,
+OBIB:willingness to be contacted,,,,,,,
+OBI:specimen collection process,skos:exactMatch,Concept id of the specimen in the specimen_concept_id field,Tables,,,,
+OBI:specimen,skos:exactMatch,We can use the specimen_source_value field for this,Tables,,,,
+OMIABIS:biobank organization,,,,,,,
+NCIT:Research or Clinical Assessment Tool,skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/4157120,ManualMappingCuration,NCIT:Research or Clinical Assessment Tool,Assessment scales,"PA, SZ, NQR",NCIT is procedure
+NCIT:Questionnaire,skos:relatedMatch,https://athena.ohdsi.org/search-terms/terms/44804112,ManualMappingCuration,NCIT:Questionnaire,Questionnaire,"PA, SZ, NQR","OMOP one use the SNOMED CT term, which is not found. Besides, SNOMED CT questionnaires is a type of scaling."
+,,,,,,,
+,,,,,,,
